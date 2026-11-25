@@ -46,35 +46,6 @@ let cart = [];
 
 const cartDisplay = document.getElementById("cart-count");
 const cartItemsDisplay = document.getElementById("cart-items");
-
-const buttons = document.querySelectorAll(".add-to-cart");
-
-buttons.forEach(function(button) {
-button.addEventListener("click", function() {
-const index = button.dataset.index;
-const selectedProduct = products[index];
-
-cart.push(selectedProduct.name);  
-
-    cartItemsDisplay.innerHTML = "";  
-
-    cart.forEach(function(item, index) {  
-        cartItemsDisplay.innerHTML += `  
-            <p>  
-                ${item}  
-                <button onclick="removeFromCart(${index})">Remove</button>  
-            </p>  
-        `;  
-    });  
-
-    cartCounter++;  
-    cartDisplay.textContent = cartCounter;  
-
-    alert("Product Added Successfully!");  
-});
-
-});
-
 function removeFromCart(index) {
 cart.splice(index, 1);
 
@@ -93,24 +64,58 @@ cart.forEach(function(item, index) {
 });
 
 }
-// Buy Now
-const buyButtons = document.querySelectorAll(".buy-now");
+// ALL PRODUCT BUTTONS - ADD TO CART + BUY NOW
 
-buyButtons.forEach(function(button) {
-button.addEventListener("click", function() {
-const index = button.dataset.index;
-const selectedProduct = products[index];
+document.addEventListener("click", function(event) {
 
-const whatsappMessage =  
-        `I want to buy: ${selectedProduct.name}`;  
+    const button = event.target.closest(".add-to-cart, .buy-now");
 
-    const whatsappNumber = "923005980901";  
+    if (!button) {
+        return;
+    }
 
-    const whatsappURL =  
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;  
+    const index = Number(button.dataset.index);
+    const selectedProduct = products[index];
 
-    window.location.href = whatsappURL;  
-});
+    if (!selectedProduct) {
+        return;
+    }
+
+    // ADD TO CART
+    if (button.classList.contains("add-to-cart")) {
+
+        cart.push(selectedProduct.name);
+
+        cartCounter = cart.length;
+        cartDisplay.textContent = cartCounter;
+
+        cartItemsDisplay.innerHTML = "";
+
+        cart.forEach(function(item, i) {
+            cartItemsDisplay.innerHTML += `
+                <p>
+                    ${item}
+                    <button onclick="removeFromCart(${i})">
+                        Remove
+                    </button>
+                </p>
+            `;
+        });
+
+        alert("Product Added Successfully!");
+    }
+
+    // BUY NOW
+    if (button.classList.contains("buy-now")) {
+
+        const message = `I want to buy: ${selectedProduct.name}`;
+
+        const whatsappNumber = "923005980901";
+
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+        window.location.href = url;
+    }
 
 });
 // Contact Form
@@ -511,46 +516,7 @@ try {
             </div>  
         `;  
 
-        const card = productList.lastElementChild;  
-
-        card.querySelector(".add-to-cart")  
-            .addEventListener("click", function() {  
-
-                cart.push(newProduct.name);  
-
-                cartCounter++;  
-                cartDisplay.textContent = cartCounter;  
-
-                cartItemsDisplay.innerHTML = "";  
-
-                cart.forEach(function(item, i) {  
-                    cartItemsDisplay.innerHTML += `  
-                        <p>  
-                            ${item}  
-                            <button onclick="removeFromCart(${i})">  
-                                Remove  
-                            </button>  
-                        </p>  
-                    `;  
-                });  
-
-                alert("Product Added Successfully!");  
-
-            });  
-
-        card.querySelector(".buy-now")  
-            .addEventListener("click", function() {  
-
-                const message =  
-                    `I want to buy: ${newProduct.name}`;  
-
-                const url =  
-                    `https://wa.me/923005980901?text=${encodeURIComponent(message)}`;  
-
-                window.location.href = url;  
-
-            });  
-
+      
     });  
 
 } catch (error) {  
