@@ -1150,3 +1150,46 @@ body {
 html{
     scroll-behavior: smooth;
 }
+/* MOBILE HERO RESPONSIVE FIX */
+
+@media (max-width: 600px) {
+
+    .hero-section {
+        min-height: 600px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-tagline {
+        top: 25px;
+        left: 12px;
+        right: 12px;
+        text-align: center;
+        font-size: 14px !important;
+        letter-spacing: 1px;
+    }
+
+    .hero-content h1 {
+        top: 38%;
+        left: 50%;
+        width: 90%;
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .hero-description {
+        bottom: 90px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-width: none;
+        font-size: 16px !important;
+        text-align: center;
+    }
+
+    .hero-btn {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
