@@ -63,14 +63,21 @@ const db = firebase.firestore();
     </section>
 
 </div>
-        <section id="home">
-            <h1>Welcome To Standard Fruit Products Official Website</h1>
-        </section>
-        <section id="products">
-            <h2>Our  Products</h2>
-            </section>
-            </div>
-            <div id="product-list"></div>
+        <section id="home" class="hero-section">
+        <div class="hero-content">
+            <p class="hero-tagline">
+                QUALITY AND TRADITION SINCE 1967
+            </p>
+            <h1> Welcome To Standard Fruit Products Online Store</h1>
+            <p class="hero-description"> 
+                Discover our traditional Products, made with quality and care since 1967. </p>
+            <a href="#product-list" class="hero-btn">
+                Shop Now
+            </a>
+        </div>
+    </section>
+            </div>      
+      <div id="product-list"></div>
             <!-- PRODUCT DETAILS POPUP -->
 <div id="product-details" class="product-details" hidden>
     <div class="details-content">
@@ -84,8 +91,6 @@ const db = firebase.firestore();
         <h3>Product Description</h3>
         <p id="details-english"></p>
 
-        <h3>مصنوعات کی تفصیل</h3>
-        <p id="details-urdu" dir="rtl"></p>
 
         <h3>Customer Reviews</h3>
         <div id="customer-reviews"></div>
