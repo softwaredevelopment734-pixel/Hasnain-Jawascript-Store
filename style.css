@@ -1094,7 +1094,7 @@ body {
 
 .hero-tagline {
     color: black !important;
-    font-size: 16px !important;
+    font-size: 20px !important;
     font-weight: 900 !important;
 }
 
@@ -1155,7 +1155,9 @@ html{
 @media (max-width: 600px) {
 
     .hero-section {
-        min-height: 600px;
+        min-height: 450px;
+        margin: 10px;
+        padding: 15px;
         position: relative;
         overflow: hidden;
     }
